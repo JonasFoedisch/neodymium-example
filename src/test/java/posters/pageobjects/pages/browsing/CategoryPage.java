@@ -69,7 +69,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Open the product detail page
         // Clicks a product by position. Because of the html code, this requires x and y coordinates.
         SelenideElement rowContainer = $$("#productOverview > .row").get(row - 1);
-        rowContainer.find(".thumbnail", column - 1).scrollTo().click();
+        rowContainer.find(".card", column - 1).scrollTo().click();
         return new ProductdetailPage();
     }
 

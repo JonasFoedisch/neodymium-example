@@ -73,7 +73,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("validate product in the cart")
     public void validateContainsProduct(Product product)
     {
-        SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
+        SelenideElement productContainer = $$("tr.cartOverviewProduct").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                                                               .parent().parent();
 
         productContainer.find(".productName").shouldHave(exactText(product.getName()));
@@ -126,7 +126,7 @@ public class CartPage extends AbstractBrowsingPage
 
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
-        SelenideElement productContainer = $("#product" + (position - 1));
+        SelenideElement productContainer = $("div.xcenter");
         // Visibility
         // Makes sure a product at the specified index exists and is visible
         productContainer.shouldBe(visible);
@@ -249,10 +249,10 @@ public class CartPage extends AbstractBrowsingPage
 
     private SelenideElement findProductContainer(String productName, String style, String size)
     {
-        SelenideElement productContainer = $$("div.hidden-xs").filter(text(productName)).first().parent().parent();
-        for (int i = 0; i < $$("div.hidden-xs").filter(text(productName)).size(); i++)
+        SelenideElement productContainer = $$("div.xcenter").filter(text(productName)).first().parent().parent();
+        for (int i = 0; i < $$("div.xcenter").filter(text(productName)).size(); i++)
         {
-            SelenideElement product = $$("div.hidden-xs").filter(text(productName)).get(i);
+            SelenideElement product = $$("div.xcenter").filter(text(productName)).get(i);
             if (product.find(".productStyle").text().equals(style) && product.find(".productSize").text().equals(size))
             {
                 productContainer = product.parent().parent();

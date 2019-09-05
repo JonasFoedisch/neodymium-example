@@ -41,11 +41,11 @@ public class HomePage extends AbstractBrowsingPage
         $("#pShopCarousel").shouldBe(visible);
 
         // Verifies the "Hot products" section is there.
-        $("#main .margin_top20 .h2").shouldBe(matchText("[A-Z].{3,}"));
+        $("#main .header-container .h2").shouldBe(matchText("[A-Z].{3,}"));
         // Asserts there's a list of items under "Hot Products".
         $("#productList").shouldBe(visible);
         // Asserts there's at least 1 item in the list.
-        $$("#productList .thumbnail").shouldHave(sizeGreaterThan(0));
+        $$("#productList .thumbnails").shouldHave(sizeGreaterThan(0));
     }
 
     @Step("validate home page")

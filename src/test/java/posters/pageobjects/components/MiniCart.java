@@ -66,6 +66,7 @@ public class MiniCart extends AbstractComponent
     {
         // Open the cart
         // Click on the button to go to the Cart
+        headerCart.click();
         miniCart.find(".goToCart").scrollTo().click();
         return new CartPage();
     }

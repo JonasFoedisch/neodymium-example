@@ -72,7 +72,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("validate order contains product \"{product.name}\"")
     public void validateContainsProduct(Product product)
     {
-        SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
+        SelenideElement productContainer = $$("tbody.container").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                                                               .parent().parent();
 
         productContainer.find(".pName").shouldHave(exactText(product.getName()));

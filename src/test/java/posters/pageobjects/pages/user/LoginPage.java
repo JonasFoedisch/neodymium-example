@@ -51,12 +51,12 @@ public class LoginPage extends AbstractBrowsingPage
         loginForm.find("h2").should(matchText("[A-Z].{3,}"));
         // Email field
         // Asserts the Email field has a label displaying the value.
-        loginForm.find("label.control-label[for=email]").shouldHave(exactText(Neodymium.localizedText("AccountPages.yourEmail")));
+        loginForm.find("label.col-form-label[for=email]").shouldHave(exactText(Neodymium.localizedText("AccountPages.yourEmail")));
         // Asserts the email field is present.
         emailField.shouldBe(visible);
         // Password field
         // Verifies the password field has a label displaying the value.
-        loginForm.find("label.control-label[for=password]").shouldHave(exactText(Neodymium.localizedText("AccountPages.yourPassword")));
+        loginForm.find("label.col-form-label[for=password]").shouldHave(exactText(Neodymium.localizedText("AccountPages.yourPassword")));
         // Asserts the password field is there.
         passwordField.shouldBe(visible);
         // Login button
