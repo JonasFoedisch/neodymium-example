@@ -20,7 +20,8 @@ public class PriceHelper
     // calculates price per 1 unit * amount, rounds it to 2 decimals (to avoid things like 19.9 instead of 19.90)
     public static String computeRowPrice(String unitPrice, String quantity)
     {
-        double res = (double) (Math.round(Double.valueOf(removeCurrency(unitPrice)) * Double.valueOf(quantity) * 100)) / 100;
+        double res = 0;
+    	res = (double) (Math.round(Double.valueOf(removeCurrency(unitPrice)) * Double.valueOf(quantity) * 100)) / 100;
         return format(res);
     }
 

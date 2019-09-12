@@ -71,8 +71,8 @@ public class RegisteredOrderTest extends AbstractTest
         categoryPage.validate(categoryName);
 
         // Go to product page
-        final String productName = categoryPage.getProductNameByPosition(2, 1);
-        ProductdetailPage productPage = categoryPage.clickProductByPosition(2, 1);
+        final String productName = categoryPage.getProductNameByPosition(1, 4);
+        ProductdetailPage productPage = categoryPage.clickProductByPosition(1, 4);
         productPage.validate(productName);
 
         productPage.addToCart("32 x 24 in", "matte");

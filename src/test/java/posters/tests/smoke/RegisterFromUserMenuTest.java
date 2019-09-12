@@ -3,6 +3,9 @@
  */
 package posters.tests.smoke;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+
 import org.junit.After;
 import org.junit.Test;
 
@@ -56,4 +59,5 @@ public class RegisterFromUserMenuTest extends AbstractTest
     {
         DeleteUserFlow.flow(user);
     }
+    
 }

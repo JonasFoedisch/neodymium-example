@@ -46,12 +46,18 @@ public class HomePage extends AbstractBrowsingPage
         $("#productList").shouldBe(visible);
         // Asserts there's at least 1 item in the list.
         $$("#productList .thumbnails").shouldHave(sizeGreaterThan(0));
+        // Verifies that footer exists 
+        $("#footer").shouldBe(visible);
+        // Asserts the CC License Image exists
+        $$("#footer .CC_License").shouldHave(sizeGreaterThan(0));
+        // Asserts the MIT License Image exists
+        $$("#footer .MIT_License").shouldHave(sizeGreaterThan(0));
     }
 
     @Step("validate home page")
     public void validate()
     {
-        validateStructure();
+        validateStructure(); 
         footer.validate();
     }
 
