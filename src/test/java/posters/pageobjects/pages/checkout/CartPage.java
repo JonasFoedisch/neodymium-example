@@ -85,13 +85,13 @@ public class CartPage extends AbstractBrowsingPage
     		productContainer.find(".productCount").shouldHave(value(Integer.toString(product.getAmount())));
     	}
     	
-    	{SelenideElement productContainer = $$("div.xcenter2").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
+    	{SelenideElement productContainer = $$("div.productUnitPrice").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                 .parent().parent();
         
-        	productContainer.find(".productUnitPrice").shouldHave(exactText(product.getUnitPrice()));
+        	productContainer.find("span.unitPriceShort").shouldHave(exactText(product.getUnitPrice()));
     	}
     	
-    	{SelenideElement productContainer = $$("div.unitPriceTotalLocalize").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
+    	{SelenideElement productContainer = $$("div.xcenter4").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                     .parent().parent();
         
         productContainer.find(".productTotalUnitPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
@@ -253,7 +253,7 @@ public class CartPage extends AbstractBrowsingPage
     public String getProductTotalUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
-        return $("div.unitPriceTotalLocalize" + " .productTotalUnitPrice").text();
+        return $("div.xcenter4" + " .productTotalUnitPrice").text();
     }
 
     @Step("get product from line item on the cart page")

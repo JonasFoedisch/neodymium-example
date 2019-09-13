@@ -69,9 +69,9 @@ public class GuestOrderTest extends AbstractTest
         CartPage cartPage = productPage.miniCart.openCartPage();
         cartPage.validateStructure();
         cartPage.validateShippingCosts(shippingCosts);
-        cartPage.miniCart.validateMiniCart(1, product);
+        cartPage.miniCart.validateMiniCart(2, product);
         cartPage.miniCart.validateTotalCount(++totalCount);
-        cartPage.validateCartItem(1, product);
+        cartPage.validateCartItem(3, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
         final String name = Neodymium.dataValue("name");

@@ -55,7 +55,7 @@ public class AddToCartTest extends AbstractTest
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart.openCartPage();
         cartPage.validate(shippingCosts);
-        cartPage.miniCart.validateMiniCart(1, product);
+        cartPage.miniCart.validateMiniCart(2, product);
         cartPage.validateCartItem(1, product);
 
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
@@ -72,7 +72,7 @@ public class AddToCartTest extends AbstractTest
 
         // Go to product page and add to cart
         productPage = categoryPage.clickProductByPosition(1, 1);
-        productPage.validate(productName2);
+        productPage.validate(productName2); 
         productPage.addToCart("64 x 48 in", "gloss");
         final Product product2 = productPage.getProduct();
 
