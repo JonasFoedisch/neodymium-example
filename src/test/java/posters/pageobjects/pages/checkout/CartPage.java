@@ -88,7 +88,7 @@ public class CartPage extends AbstractBrowsingPage
     	{SelenideElement productContainer = $$("div.productUnitPrice").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                 .parent().parent();
         
-        	productContainer.find("span.unitPriceShort").shouldHave(exactText(product.getUnitPrice()));
+        	productContainer.find("div.productUnitPrice").shouldHave(exactText(product.getUnitPrice()));
     	}
     	
     	{SelenideElement productContainer = $$("div.xcenter4").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
@@ -159,7 +159,9 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".productSize").shouldHave(exactText(productSize));
     	}
     	{
-        SelenideElement productContainer = $("div.xcenter2");
+    		
+        SelenideElement productContainer = $("td.xcenter3");
+        productContainer.shouldBe(visible);
         // Price
         // Compares the displayed price with the parameter
         productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
@@ -174,7 +176,8 @@ public class CartPage extends AbstractBrowsingPage
     	String quantity_varDynamic;
     	String subOrderPrice;
     	{
-    	SelenideElement productContainer = $("div.xcenter3");
+    	SelenideElement productContainer = $("td.xcenter3");
+    	productContainer.shouldBe(visible);
         // Store unit price (without $ sign)
         // Takes the price per 1 unit of the specified item
     	unitPriceShort_varDynamic = productContainer.find(".unitPriceShort").text();
@@ -182,13 +185,13 @@ public class CartPage extends AbstractBrowsingPage
     	
     	// Store product count
         // Takes the amount of the specified item
-    	quantity_varDynamic = $("div.xcenter2").val();
+    	quantity_varDynamic = $("#productCount0").val();
     	
     	subOrderPrice = PriceHelper.computeRowPrice(PriceHelper.addCurrency(unitPriceShort_varDynamic), quantity_varDynamic);
      
     	}    
     	   {
-        SelenideElement productContainer = $("div.xcenter4");
+        SelenideElement productContainer = $("td.xcenter6");
         // Verify calculated cost is the shown cost
         // Compare calculated Unit Price to displayed total Unit Price
         productContainer.find(".productTotalUnitPrice").shouldHave(exactText(subOrderPrice));
@@ -246,7 +249,7 @@ public class CartPage extends AbstractBrowsingPage
     public String getProductUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
-        return $("div.xcenter2" + " .productUnitPrice").text();
+        return $("div.productUnitPrice" + " .productUnitPrice").text();
     }
 
     @Step("get product total price from line item on the cart page")

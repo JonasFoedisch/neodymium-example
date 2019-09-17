@@ -84,7 +84,7 @@ public class RegisteredOrderTest extends AbstractTest
         cartPage.validateShippingCosts(shippingCosts);
         cartPage.miniCart.validateMiniCart(2, product);
         cartPage.miniCart.validateTotalCount(++totalCount);
-        cartPage.validateCartItem(1, product);
+        cartPage.validateCartItem(3, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
         // Go to shipping address and validate
