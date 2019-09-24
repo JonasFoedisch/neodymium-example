@@ -249,14 +249,14 @@ public class CartPage extends AbstractBrowsingPage
     public String getProductUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
-        return $("div.productUnitPrice" + " .productUnitPrice").text();
+        return $("td.xcenter3" + " .productUnitPrice").text();
     }
 
     @Step("get product total price from line item on the cart page")
     public String getProductTotalUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
-        return $("div.xcenter4" + " .productTotalUnitPrice").text();
+        return $("td.xcenter6" + " .productTotalUnitPrice").text();
     }
 
     @Step("get product from line item on the cart page")
@@ -272,15 +272,15 @@ public class CartPage extends AbstractBrowsingPage
     @Step("update product count on the cart page")
     public void updateProductCount(int position, int amount)
     {
-        SelenideElement productContainer = $("div.form-group");
+       	SelenideElement productContainer = $("#product" + (position - 1));
         // Type in the specified amount
-        productContainer.find(".productCount").setValue(Integer.toString(amount));
+    //    productContainer.find("#productCount" + (position - 1)).setValue(Integer.toString(amount));
         // Stores the new amount in an outside variable
         // Click the update button
         // Clicks the update button for the product
-        productContainer.find(".btnUpdateProduct").scrollTo().click();
+    //    productContainer.find(".btnUpdateProductCount" + (position - 1)).scrollTo().click();
     }
-
+    	
     private SelenideElement findProductContainer(String productName, String style, String size)
     {
         SelenideElement productContainer = $$("div.d-none .d-md-block").filter(text(productName)).first().parent().parent();
@@ -307,7 +307,7 @@ public class CartPage extends AbstractBrowsingPage
     public void removeProductByName(String productName, String style, String size)
     {
         SelenideElement productContainer = findProductContainer(productName, style, size);
-        productContainer.find(".btnRemoveProduct").click();
+        productContainer.find(".btnRemoveProductCount0").click();
         $("#buttonDelete").click();
     }
 

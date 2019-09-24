@@ -13,6 +13,6 @@ public class CheckoutHeader extends AbstractComponent
 {
     public void isComponentAvailable()
     {
-        $("#headerCheckout").should(exist);
+        $("#globalNavigation").should(exist);
     }
 }

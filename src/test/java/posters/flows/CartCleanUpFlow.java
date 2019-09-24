@@ -3,7 +3,10 @@
  */
 package posters.flows;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+
+import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -14,11 +17,17 @@ import posters.pageobjects.pages.checkout.CartPage;
  */
 public class CartCleanUpFlow
 {
+ 
     @Step("cart clean up flow")
     public static void flow()
     {
+    	
+        // Verifies the company Logo and name are visible.
+    	$("#brand").shouldBe(visible);
         // click on the shop logo to ensure a home page afterwards
-        $(".navbar #brand").click();
+    	SelenideElement productContainer = $(".navbar");
+    	productContainer.find("#brand").click();
+    	
 
         // open the minicart
         HomePage homePage = new HomePage();
