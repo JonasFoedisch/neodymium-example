@@ -214,7 +214,7 @@ public class CartPage extends AbstractBrowsingPage
     public void validateProductAmount(int position, int amount)
     {
         // Makes sure the amount of the item with index @{index} in the cart equals the parameter
-        $("div .form-group" + " .productCount").shouldHave(exactValue(Integer.toString(amount)));
+        $("div .form-group" + " .xcenter4").shouldHave(exactValue(Integer.toString(amount)));
     }
 
     @Step("get product name from line item on the cart page")
@@ -274,11 +274,11 @@ public class CartPage extends AbstractBrowsingPage
     {
        	SelenideElement productContainer = $("#product" + (position - 1));
         // Type in the specified amount
-    //    productContainer.find("#productCount" + (position - 1)).setValue(Integer.toString(amount));
+       	productContainer.find(".xcenter4").setValue(Integer.toString(amount));
         // Stores the new amount in an outside variable
         // Click the update button
         // Clicks the update button for the product
-    //    productContainer.find(".btnUpdateProductCount" + (position - 1)).scrollTo().click();
+       	productContainer.find(".xcenter2").scrollTo().click();
     }
     	
     private SelenideElement findProductContainer(String productName, String style, String size)
