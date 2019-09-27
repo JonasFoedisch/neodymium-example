@@ -1,34 +1,19 @@
 package posters.tests.smoke;
 
 
-
-import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.awt.event.KeyEvent;
-import java.util.Random;
-
-import org.openqa.selenium.By;
-
 import com.codeborne.selenide.SelenideElement;
 
-import io.qameta.allure.Step;
-import posters.pageobjects.pages.browsing.CategoryPage;
-
-import com.codeborne.selenide.Driver;
-import junit.framework.TestCase;
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.visible;
 
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
 
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -36,66 +21,66 @@ public class LicenceViewTest {
 
 	
 	
-		@Before
-	    public void testcase() {
-			// Go To HomePage
-			 HomePage homePage = OpenHomePageFlow.flow();
-			 homePage.validate();
 	
-			 // Verifies that footer exists 
-	        $("#footer").scrollTo().shouldBe(visible);
-	     // Asserts the CC License Image exists
-		    $$(".CC_License").shouldHave(sizeGreaterThan(0));
-		    // Asserts the MIT License Image exists
-	        $$(".MIT_License").shouldHave(sizeGreaterThan(0));
-	        // Asserts the MIT License2 Image exists
-	        $(".MIT_License").click();
-
-		    // driver.switchTo("chrome://downloads/");		    
+	        @Test
+	public void FooterTest() {
+		// Go To HomePage
+		 HomePage homePage = OpenHomePageFlow.flow();
+		 homePage.validate();
 		 
-			 
-			 /*
-			  * 
+		 String PDFFilename = null;
 
+		 // Verifies that footer exists 
+        $("#footer").scrollTo().shouldBe(visible);
+        // Asserts the CC License Image exists
+	    $$(".CC_License").shouldHave(sizeGreaterThan(0));
+	    // Asserts the MIT License Image exists
+        $$(".MIT_License").shouldHave(sizeGreaterThan(0));
+        // Asserts the MIT License2 Image exists
+        $(".MIT_License").click();
+        // Asserts the Popup is displayed
+        $("#LICENSE").shouldBe(visible);
+        //click Button again to close popup
+        $(".MIT_License").click();
+        //Check if License is closed correctly
+        $("#LICENSE").shouldNotBe(visible);
+        // Asserts the Licence.txt Image exists
+        $$(".fa-copy").shouldHave(sizeGreaterThan(0));
+        // Asserts the Licence.pdf Image exists
+       	        
+     // modal komplett checken !
+        
+        $$(".fa-file-pdf").shouldHave(sizeGreaterThan(0));
+        //click the pdf viewer
+        $(".fa-file-pdf").click();
+        
+        SelenideElement pdfContainer = $("div.modal-content");
+        // Asserts the Licence.pdf Image exists
+        //ganzes
+        $$(".modal-content").shouldHave(sizeGreaterThan(0));
+        //header
+        pdfContainer.find(".modal-title").shouldHave(exactText(PDFFilename));
+        //btn top
+        pdfContainer.find("#Close-btn-top").shouldBe(visible);
+        //btn bot
+        pdfContainer.find("#Close-btn-bot").shouldBe(visible);
+        
+        $("#close-btn-top").click();
+        
+        $("div.modal-content").shouldNotBe(visible);
+        
+        
+        $(".fa-file-pdf").shouldBe(visible);
+        $(".fa-file-pdf").click();
+       
+        pdfContainer.find(".modal-content").shouldBe(visible);
+        pdfContainer.find(".Close-btn-bot").shouldBe(visible);
+        
+        $("#close-btn-bot").click();
+        
+        $("div.modal-content").shouldNotBe(visible);
+        
+        $("#footer").shouldBe(visible);
 
-
-	
-	
-		
-	
-			
-	       
-		    
-	     //Optional opportunity:
-		    
-	        //open the show more tab
-	        
-	        //clicking the link for license
-	      
-	        //check if licence pdf is displayed correctly
-	        
-
-	        
-	        
-	       
-			  * */
-			 
-		
-	        //click download button
-	//	final String MIT_License = Neodymium.dataValue("License");
-	//	MIT_License.scrollto().click();
-		}
-
-	    @Test
-	    public void testDownload() {
-	    	
-	    	
-	 
-	    	//test if download has started
-	    
-	    	//wait
-	    
-	    	//test if download was completed
-	    	
-	    }
+	        }
 }

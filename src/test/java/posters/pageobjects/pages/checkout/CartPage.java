@@ -73,7 +73,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("validate product in the cart")
     public void validateContainsProduct(Product product)
     {
-    	{ SelenideElement productContainer = $$("div.xcenter").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
+    	{ SelenideElement productContainer = $$("div.productDescription").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                                                               .parent().parent();
 
         productContainer.find(".productName").shouldHave(exactText(product.getName()));
@@ -141,7 +141,7 @@ public class CartPage extends AbstractBrowsingPage
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
     	{ 
-    	SelenideElement productContainer = $("div.xcenter");
+    	SelenideElement productContainer = $("div.productDescription");
         // Visibility
         // Makes sure a product at the specified index exists and is visible
         productContainer.shouldBe(visible);
@@ -221,21 +221,21 @@ public class CartPage extends AbstractBrowsingPage
     public String getProductName(int position)
     {
         // Get the product name to enable usage outside this module.
-        return $("div.xcenter" + " .productName").text();
+        return $("div.productDescription" + " .productName").text();
     }
 
     @Step("get product style from line item on the cart page")
     public String getProductStyle(int position)
     {
         // Get the style to enable usage outside this module.
-        return $("div.xcenter" + " .productStyle").text();
+        return $("div.productDescription" + " .productStyle").text();
     }
 
     @Step("get product size from line item on the cart page")
     public String getProductSize(int position)
     {
         // Get the size to enable usage outside this module.
-        return $("div.xcenter" + " .productSize").text();
+        return $("div.productDescription" + " .productSize").text();
     }
 
     @Step("get product count from line item on the cart page")
@@ -350,7 +350,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("click on a product on the cart page")
     public ProductdetailPage openProductPage(int position)
     {
-        $("div.xcenter" + " img").scrollTo().click();
+    	 $("#product" + (position - 1) + " img").scrollTo().click();
         return new ProductdetailPage();
     }
 

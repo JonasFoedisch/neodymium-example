@@ -154,7 +154,7 @@ public class MiniCart extends AbstractComponent
         // Validate data of specified item
         // Product Name
         // ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems
-        SelenideElement miniCartItem = $$("#miniCartMenu").get(position - 1);
+        SelenideElement miniCartItem = $$("#miniCartMenu .cartItems").get(position - 1);
         // Compares the name of the cart item at position @{position} to the parameter
         miniCartItem.find(".prodName").shouldHave(exactText(productName));
         // Product Style
