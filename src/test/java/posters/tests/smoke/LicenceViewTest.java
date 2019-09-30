@@ -28,7 +28,7 @@ public class LicenceViewTest {
 		 HomePage homePage = OpenHomePageFlow.flow();
 		 homePage.validate();
 		 
-		 String PDFFilename = null;
+		 String PDFFilename = "MIT-License Xceptance (c) 2019";
 
 		 // Verifies that footer exists 
         $("#footer").scrollTo().shouldBe(visible);
@@ -58,14 +58,12 @@ public class LicenceViewTest {
         // Asserts the Licence.pdf Image exists
         //ganzes
         $$(".modal-content").shouldHave(sizeGreaterThan(0));
-        //header
-        pdfContainer.find(".modal-title").shouldHave(exactText(PDFFilename));
         //btn top
         pdfContainer.find("#Close-btn-top").shouldBe(visible);
         //btn bot
         pdfContainer.find("#Close-btn-bot").shouldBe(visible);
         
-        $("#close-btn-top").click();
+        $("#Close-btn-top").click();
         
         $("div.modal-content").shouldNotBe(visible);
         
@@ -73,10 +71,10 @@ public class LicenceViewTest {
         $(".fa-file-pdf").shouldBe(visible);
         $(".fa-file-pdf").click();
        
-        pdfContainer.find(".modal-content").shouldBe(visible);
-        pdfContainer.find(".Close-btn-bot").shouldBe(visible);
+        $$(".modal-content").shouldHave(sizeGreaterThan(0));
+        pdfContainer.find("#Close-btn-bot").shouldBe(visible);
         
-        $("#close-btn-bot").click();
+        $("#Close-btn-bot").click();
         
         $("div.modal-content").shouldNotBe(visible);
         
