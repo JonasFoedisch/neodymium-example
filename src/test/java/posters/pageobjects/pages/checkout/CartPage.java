@@ -91,7 +91,7 @@ public class CartPage extends AbstractBrowsingPage
         	productContainer.find("div.productUnitPrice").shouldHave(exactText(product.getUnitPrice()));
     	}
     	
-    	{SelenideElement productContainer = $$("div.xcenter4").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
+    	{SelenideElement productContainer = $$("div.quantityCount").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                     .parent().parent();
         
         productContainer.find(".productTotalUnitPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
@@ -160,7 +160,7 @@ public class CartPage extends AbstractBrowsingPage
     	}
     	{
     		
-        SelenideElement productContainer = $("td.xcenter3");
+        SelenideElement productContainer = $("td.UnitPriceCol");
         productContainer.shouldBe(visible);
         // Price
         // Compares the displayed price with the parameter
@@ -176,7 +176,7 @@ public class CartPage extends AbstractBrowsingPage
     	String quantity_varDynamic;
     	String subOrderPrice;
     	{
-    	SelenideElement productContainer = $("td.xcenter3");
+    	SelenideElement productContainer = $("td.UnitPriceCol");
     	productContainer.shouldBe(visible);
         // Store unit price (without $ sign)
         // Takes the price per 1 unit of the specified item
@@ -191,7 +191,7 @@ public class CartPage extends AbstractBrowsingPage
      
     	}    
     	   {
-        SelenideElement productContainer = $("td.xcenter6");
+        SelenideElement productContainer = $("td.TotalUnitPriceCol");
         // Verify calculated cost is the shown cost
         // Compare calculated Unit Price to displayed total Unit Price
         productContainer.find(".productTotalUnitPrice").shouldHave(exactText(subOrderPrice));
@@ -214,7 +214,7 @@ public class CartPage extends AbstractBrowsingPage
     public void validateProductAmount(int position, int amount)
     {
         // Makes sure the amount of the item with index @{index} in the cart equals the parameter
-        $("div .form-group" + " .xcenter4").shouldHave(exactValue(Integer.toString(amount)));
+        $("div .form-group" + " .quantityCount").shouldHave(exactValue(Integer.toString(amount)));
     }
 
     @Step("get product name from line item on the cart page")
@@ -249,14 +249,14 @@ public class CartPage extends AbstractBrowsingPage
     public String getProductUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
-        return $("td.xcenter3" + " .productUnitPrice").text();
+        return $("td.UnitPriceCol" + " .productUnitPrice").text();
     }
 
     @Step("get product total price from line item on the cart page")
     public String getProductTotalUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
-        return $("td.xcenter6" + " .productTotalUnitPrice").text();
+        return $("td.TotalUnitPriceCol" + " .productTotalUnitPrice").text();
     }
 
     @Step("get product from line item on the cart page")
@@ -274,11 +274,11 @@ public class CartPage extends AbstractBrowsingPage
     {
        	SelenideElement productContainer = $("#product" + (position - 1));
         // Type in the specified amount
-       	productContainer.find(".xcenter4").setValue(Integer.toString(amount));
+       	productContainer.find(".quantityCount").setValue(Integer.toString(amount));
         // Stores the new amount in an outside variable
         // Click the update button
         // Clicks the update button for the product
-       	productContainer.find(".xcenter2").scrollTo().click();
+       	productContainer.find(".UpdatePrice").scrollTo().click();
     }
     	
     private SelenideElement findProductContainer(String productName, String style, String size)
